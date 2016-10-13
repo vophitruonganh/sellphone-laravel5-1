@@ -39,7 +39,7 @@ class ProductsController extends Controller
     {
         $categories = Category::all();
         $trademarks = TrademarkByCategories::all();
-        $products = Product::where('trademark_id','=',$trademark_id)->where('group_id','=',$categories_id)->get();
+        $products = Product::where('trademark_id','=',$trademark_id)->where('group_id','=',$categories_id)->take(12)->get();
         return view('site.products')
             ->with('products',$products)
             ->with('categories',$categories)
@@ -58,12 +58,12 @@ class ProductsController extends Controller
         $product = Product::where('id','=',$product_id)->get();
         $products = Product::where('group_id','=',$product[0]->group_id)->where('trademark_id','=',$product[0]->trademark_id)->get();
         $details = ProductDetail::where('product_id','=',$product_id)->get();
-        // dd($details);
+        dd($details);
         return view('site.detail')
             ->with('details',$details)
             ->with('categories',$categories)
             ->with('trademarks',$trademarks)
-            ->with('product',$product)
+            ->with('products',$product)
             ->with('feature_products',$products);
 
     }

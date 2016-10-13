@@ -23,15 +23,19 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
         $trademarks = TrademarkByCategories::all();
+        $products = Product::all();
+
         return View('home')
                 ->with('categories',$categories)
-                ->with('trademarks',$trademarks);
+                ->with('trademarks',$trademarks)
+                ->with('products',$products);
     }
 
     public function Categories($categories_id){
     	$categories = Category::all();
         $item = Category::findOrFail($categories_id);
         $products = Products::where('group_id','=',$categories_id)->firstOrFail();
+
         return view('site.products')
                 ->with('categories',$categories)
                 ->with('products',$products);

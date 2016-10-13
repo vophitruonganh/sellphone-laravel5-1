@@ -1,0 +1,3 @@
+show all product
+
+next step -> detail complateion , and page admin ->>  complate model admin and login page (dashboard/login)
